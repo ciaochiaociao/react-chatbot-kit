@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Chat from '../Chat/Chat';
 
@@ -29,6 +29,8 @@ interface IChatbotProps {
   validator?: (input: string) => Boolean;
   runInitialMessagesWithHistory?: Boolean;
   disableScrollToBottom?: boolean;
+  emotionDetection?: string;
+  setEmotionDetection?: (value: string) => void;
 }
 
 const Chatbot = ({
@@ -42,6 +44,8 @@ const Chatbot = ({
   runInitialMessagesWithHistory,
   disableScrollToBottom,
   validator,
+  emotionDetection,
+  setEmotionDetection,
   ...rest
 }: IChatbotProps) => {
   const {
@@ -77,6 +81,21 @@ const Chatbot = ({
   const customComponents = getCustomComponents(config);
   const botName = getBotName(config);
   const customMessages = getCustomMessages(config);
+  // console.log("emotionDetection ", emotionDetection)
+  useEffect(() => {
+    if (emotionDetection == "bad") {
+      console.log("Bad emotion detected!") // Test emotion detection
+      // todo: add emotion detection
+      setEmotionDetection("boosting mood")
+      setState((prev: any) => ({
+        ...prev,
+        messages: [
+          ...prev.messages,
+          createChatBotMessage("Bad mood detected! Do you want to boost your mood?", null)
+        ]
+      }))
+    }
+  }, [emotionDetection])
 
   if (isConstructor(ActionProvider) && isConstructor(MessageParser)) {
     return (
