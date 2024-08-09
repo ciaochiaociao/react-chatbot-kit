@@ -14,10 +14,7 @@
     "build-watch": "webpack --watch",
     "prepare": "yarn run build"
   },
-  "author": {
-    "name": "Fredrik Strand Oseberg",
-    "email": "fredrik.no@gmail.com"
-  },
+  "author": "Chiao-Wei Hsu",
   "devDependencies": {
     "@types/react": "^17.0.21",
     "css-loader": "^3.5.1",
@@ -31,8 +28,5 @@
     "webpack-node-externals": "^2.5.2"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/FredrikOseberg/react-chatbot-kit"
-  }
+  "repository": "https://github.com/ciaochiaociao/react-chatbot-kit"
 }
