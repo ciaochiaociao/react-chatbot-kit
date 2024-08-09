@@ -29,6 +29,7 @@ interface IChatbotProps {
   validator?: (input: string) => Boolean;
   runInitialMessagesWithHistory?: Boolean;
   disableScrollToBottom?: boolean;
+  chatbot?: any;
   emotionDetection?: string;
   setEmotionDetection?: (value: string) => void;
 }
@@ -44,6 +45,7 @@ const Chatbot = ({
   runInitialMessagesWithHistory,
   disableScrollToBottom,
   validator,
+  chatbot,
   emotionDetection,
   setEmotionDetection,
   ...rest
@@ -86,14 +88,18 @@ const Chatbot = ({
     if (emotionDetection == "bad") {
       console.log("Bad emotion detected!") // Test emotion detection
       // todo: add emotion detection
+      const botMessageStr = "Bad mood detected! Do you want to boost your mood?"
+      chatbot.addAIMessageToChatHistory(botMessageStr)
+      console.log("Added message to chat history")
       setEmotionDetection("boosting mood")
       setState((prev: any) => ({
         ...prev,
         messages: [
           ...prev.messages,
-          createChatBotMessage("Bad mood detected! Do you want to boost your mood?", null)
+          createChatBotMessage(botMessageStr, null)
         ]
       }))
+
     }
   }, [emotionDetection])
 
