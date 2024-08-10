@@ -91,7 +91,7 @@ const Chatbot = ({
       const botMessageStr = "Bad mood detected! Do you want to boost your mood?"
       chatbot.addAIMessageToChatHistory(botMessageStr)
       console.log("Added message to chat history")
-      setEmotionDetection("boosting mood")
+      setEmotionDetection("asking")
       setState((prev: any) => ({
         ...prev,
         messages: [
@@ -129,8 +129,13 @@ const Chatbot = ({
         state={state}
         setState={setState}
         createChatBotMessage={createChatBotMessage}
+        emotionDetection={emotionDetection}
+        setEmotionDetection={setEmotionDetection}
       >
-        <MessageParser>
+        <MessageParser 
+          setEmotionDetection={setEmotionDetection}
+          emotionDetection={emotionDetection}
+          >
           <Chat
             state={state}
             setState={setState}
